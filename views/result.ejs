@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload Result</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row mt-5">
+        <div class="col-md-4">
+          <a href="/" class="btn btn-primary">Home</a>
+        </div>
+    </div>
+    <h1 class="mt-5">Image Upload Result</h1>
+    
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <h2>Original Image</h2>
+        <img src="<%= image %>" class="img-fluid" alt="Original Image">
+        <p>Image URL: <a href="<%= image %>"><%= image %></a></p>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <% const filters = [
+        'e_art:al_dente', 'e_art:athena', 'e_art:audrey', 'e_art:aurora',
+        'e_art:daguerre', 'e_art:eucalyptus', 'e_art:fes', 'e_art:frost',
+        'e_art:hairspray', 'e_art:hokusai', 'e_art:incognito', 'e_art:linen',
+        'e_art:peacock', 'e_art:primavera', 'e_art:quartz', 'e_art:red_rock',
+        'e_art:refresh', 'e_art:sizzle', 'e_art:sonnet', 'e_art:ukulele',
+        'e_art:zorro'
+      ]; %>
+      
+      <% filters.forEach((filter, index) => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= filter %></h5>
+              <img src="<%= image.replace('/upload/', '/upload/' + filter + '/') %>" class="card-img-top img-fluid" alt="<%= filter %>">
+              <p class="card-text">Image URL: <a href="<%= image.replace('/upload/', '/upload/' + filter + '/') %>" target="_blank"><%= image %></a></p>
+            </div>
+          </div>
+        </div>
+        <% if ((index + 1) % 3 === 0) { %>
+          </div><div class="row mt-3">
+        <% } %>
+      <% }); %>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-md-4">
+        <a href="/" class="btn btn-primary">Upload another image</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
